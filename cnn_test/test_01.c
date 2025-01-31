@@ -1,3 +1,8 @@
+//è¿™æ˜¯ç”¨cè¯­è¨€ç¼–å†™çš„cnnç¥ç»ç½‘ç»œè¯†åˆ«ministä¸­0-9æ‰‹å†™æ•°å­—çš„ç¨‹åº
+//ç¼–ç¨‹è½¯ä»¶ä¸ºvs2022ï¼Œæœªä½¿ç”¨å…¶ä»–å†…ç½®åº“
+//å…¶ä¸­å·ç§¯å±‚ï¼Œæ± åŒ–å±‚ï¼Œå…¨è¿æ¥ä¸ºå•ç‹¬ä»£ç å‡½æ•°ã€‚å…¶ä½™å®ç°è¿‡ç¨‹å€Ÿé‰´äº†ç½‘ç»œå¼€æºèµ„æº
+//åœ¨cè¯­è¨€é¡¹ç›®ä¸­ï¼Œæ²¡æœ‰å®ç°åå‘ä¼ æ’­çš„åŠŸèƒ½ï¼Œæ­£ç¡®ç‡åªèƒ½è¾¾åˆ°54%
+
 #define _CRT_SECURE_NO_WARNINGS 1
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +14,7 @@
 #define NUM_TRAIN_IMAGES 60000
 #define NUM_TEST_IMAGES 10000
 
-// ¼ÓÔØMNISTÍ¼ÏñÊı¾İ
+// åŠ è½½MNISTå›¾åƒæ•°æ®
 void load_images(const char* filename, unsigned char* images, int num_images) {
 	FILE* file = fopen(filename, "rb");
 	if (file == NULL) {
@@ -29,7 +34,7 @@ void load_images(const char* filename, unsigned char* images, int num_images) {
 	fclose(file);
 }
 
-// ¼ÓÔØMNIST±êÇ©Êı¾İ
+// åŠ è½½MNISTæ ‡ç­¾æ•°æ®
 void load_labels(const char* filename, unsigned char* labels, int num_labels) {
 	FILE* file = fopen(filename, "rb");
 	if (file == NULL) {
@@ -45,7 +50,7 @@ void load_labels(const char* filename, unsigned char* labels, int num_labels) {
 	fclose(file);
 }
 
-// ¾í»ı²Ù×÷
+// å·ç§¯æ“ä½œ
 void conv2d(const unsigned char* input, float* kernel, float* output, int input_size, int kernel_size, int output_size) {
 	for (int i = 0; i < output_size; i++) {
 		for (int j = 0; j < output_size; j++) {
@@ -59,7 +64,7 @@ void conv2d(const unsigned char* input, float* kernel, float* output, int input_
 	}
 }
 
-// ³Ø»¯²Ù×÷£¨×î´ó³Ø»¯£©
+// æ± åŒ–æ“ä½œï¼ˆæœ€å¤§æ± åŒ–ï¼‰
 void max_pooling(float* input, float* output, int input_size, int pool_size, int output_size) {
 	for (int i = 0; i < output_size; i++) {
 		for (int j = 0; j < output_size; j++) {
@@ -77,7 +82,7 @@ void max_pooling(float* input, float* output, int input_size, int pool_size, int
 	}
 }
 
-// È«Á¬½Ó²ã
+// å…¨è¿æ¥å±‚
 void fully_connected(float* input, float* weights, float* output, int input_size, int output_size) {
 	for (int i = 0; i < output_size; i++) {
 		output[i] = 0;
@@ -87,7 +92,7 @@ void fully_connected(float* input, float* weights, float* output, int input_size
 	}
 }
 
-// Ô¤²âº¯Êı
+// é¢„æµ‹å‡½æ•°
 int predict(const unsigned char* image, float* conv_kernel, float* fc_weights) {
 	int conv_output_size = IMG_SIZE - 3 + 1;
 	float* conv_output = (float*)malloc(conv_output_size * conv_output_size * sizeof(float));
@@ -126,12 +131,12 @@ int main() {
 	unsigned char* test_images = (unsigned char*)malloc(NUM_TEST_IMAGES * IMG_SIZE * IMG_SIZE * sizeof(unsigned char));
 	unsigned char* test_labels = (unsigned char*)malloc(NUM_TEST_IMAGES * sizeof(unsigned char));
 
-	load_images("C:\\Ra\\¹ØÓÚpyµÄÏîÄ¿£¨charm£©\\MINIST_HWN\\MNIST\\train-images-idx3-ubyte.gz", train_images, NUM_TRAIN_IMAGES);
-	load_labels("C:\\Ra\\¹ØÓÚpyµÄÏîÄ¿£¨charm£©\\MINIST_HWN\\MNIST\\train-labels-idx1-ubyte.gz", train_labels, NUM_TRAIN_IMAGES);
-	load_images("C:\\Ra\\¹ØÓÚpyµÄÏîÄ¿£¨charm£©\\MINIST_HWN\\MNIST\\t10k-images-idx3-ubyte.gz", test_images, NUM_TEST_IMAGES);
-	load_labels("C:\\Ra\\¹ØÓÚpyµÄÏîÄ¿£¨charm£©\\MINIST_HWN\\MNIST\\t10k-labels-idx1-ubyte.gz", test_labels, NUM_TEST_IMAGES);
+	load_images("C:\\Ra\\å…³äºpyçš„é¡¹ç›®ï¼ˆcharmï¼‰\\MINIST_HWN\\MNIST\\train-images-idx3-ubyte.gz", train_images, NUM_TRAIN_IMAGES);
+	load_labels("C:\\Ra\\å…³äºpyçš„é¡¹ç›®ï¼ˆcharmï¼‰\\MINIST_HWN\\MNIST\\train-labels-idx1-ubyte.gz", train_labels, NUM_TRAIN_IMAGES);
+	load_images("C:\\Ra\\å…³äºpyçš„é¡¹ç›®ï¼ˆcharmï¼‰\\MINIST_HWN\\MNIST\\t10k-images-idx3-ubyte.gz", test_images, NUM_TEST_IMAGES);
+	load_labels("C:\\Ra\\å…³äºpyçš„é¡¹ç›®ï¼ˆcharmï¼‰\\MINIST_HWN\\MNIST\\t10k-labels-idx1-ubyte.gz", test_labels, NUM_TEST_IMAGES);
 
-	// Ëæ»ú³õÊ¼»¯¾í»ıºËºÍÈ«Á¬½Ó²ãÈ¨ÖØ
+	// éšæœºåˆå§‹åŒ–å·ç§¯æ ¸å’Œå…¨è¿æ¥å±‚æƒé‡
 	float* conv_kernel = (float*)malloc(3 * 3 * sizeof(float));
 	for (int i = 0; i < 3 * 3; i++) {
 		conv_kernel[i] = (float)rand() / RAND_MAX;
@@ -144,7 +149,7 @@ int main() {
 		fc_weights[i] = (float)rand() / RAND_MAX;
 	}
 
-	// ²âÊÔÄ£ĞÍ
+	// æµ‹è¯•æ¨¡å‹
 	int correct_count = 0;
 	for (int i = 0; i < NUM_TEST_IMAGES; i++) {
 		unsigned char* image = &test_images[i * IMG_SIZE * IMG_SIZE];
