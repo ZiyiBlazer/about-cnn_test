@@ -1,3 +1,9 @@
+#这是使用python语言实现cnn神经网络识别0-9手写数字的项目.
+#使用编程软件为pycharm;py版本为3.12.
+#使用了anaconda中tensorflow库及keras库（包含使用numpy;conv2d;pooling2d;dense.etc）
+#还添加了matplotilb绘制出最终loss,accuracy变化图像
+
+
 import keras
 # import keras：导入 Keras 深度学习库，Keras 是一个高级神经网络 API，能帮助我们快速搭建和训练神经网络。
 from keras.datasets import mnist
