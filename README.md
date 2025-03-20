@@ -1,1 +1,1 @@
-使用cnn做出简单的识别MNIST手写数字集的神经网络
+the network about CNN
